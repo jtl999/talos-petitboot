@@ -203,7 +203,7 @@ AC_DEFUN([AX_WITH_CURSES], [
     # Test for NcursesW
 
     AS_IF([test "x$CURSES_LIB" = x && test "x$with_ncursesw" != xno], [
-        LIBS="$ax_saved_LIBS -lncursesw"
+        LIBS="$ax_saved_LIBS -lncursesw -ltinfo"
 
         AC_CACHE_CHECK([for NcursesW wide-character library], [ax_cv_ncursesw], [
             AC_LINK_IFELSE([AC_LANG_CALL([], [initscr])],
@@ -216,7 +216,7 @@ AC_DEFUN([AX_WITH_CURSES], [
         AS_IF([test "x$ax_cv_ncursesw" = xyes], [
             ax_cv_curses=yes
             ax_cv_curses_which=ncursesw
-            CURSES_LIB="-lncursesw"
+            CURSES_LIB="-lncursesw -ltinfo"
             AC_DEFINE([HAVE_NCURSESW], [1], [Define to 1 if the NcursesW library is present])
             AC_DEFINE([HAVE_CURSES],   [1], [Define to 1 if a SysV or X/Open compatible Curses library is present])
 
